@@ -24,11 +24,11 @@ Sumário = {
 
 -- < crdt - bypass > --
 
-def (str(função))
-    finalidade = [produzir ferramentas, explorar, aprender]
+def (str(função)):
+    finalidade = ["produzir ferramentas", "explorar", "aprender"]
 
-    if função != finalidade
+    if função not in finalidade:
         # :/
     else:
-        for func in Range(len(finalidade))
-         return(len(Sumário) + 1)
+        for propósito in range(len(finalidade)):
+            return(len(Sumário) + 1)
