@@ -4,37 +4,37 @@
 
     },
   {
-    "categoria": "Cadastros e Dados Mestres",
+    "categoria": "Cadastros e Dados ",
     "tabela": "AA2CTIPO",
     "descricao": "Armazena dados genéricos de Fornecedor, Loja, Cliente, Representante, Depósito. Tip_Loj_Cli define o tipo: F-Fornecedor, L-Loja, C-Cliente, R-Representante, D-Depósito"
   },
   {
-    "categoria": "Cadastros e Dados Mestres",
+    "categoria": "Cadastros e Dados ",
     "tabela": "AA2CFORN",
     "descricao": "Dados específicos do Fornecedor (fora de linha)"
   },
   {
-    "categoria": "Cadastros e Dados Mestres",
+    "categoria": "Cadastros e Dados ",
     "tabela": "AA3CITEM",
     "descricao": "Dados específicos do Item"
   },
   {
-    "categoria": "Cadastros e Dados Mestres",
+    "categoria": "Cadastros e Dados ",
     "tabela": "AA3CCEAN",
     "descricao": "Tabela com códigos de barra EAN/DUN dos produtos"
   },
   {
-    "categoria": "Cadastros e Dados Mestres",
+    "categoria": "Cadastros e Dados ",
     "tabela": "CAD_CLIENTE",
     "descricao": "Dados do cliente (CRM)"
   },
   {
-    "categoria": "Cadastros e Dados Mestres",
+    "categoria": "Cadastros e Dados ",
     "tabela": "END_CLIENTE",
     "descricao": "Endereço do cliente (apenas end_tpo_end = 1)"
   },
   {
-    "categoria": "Cadastros e Dados Mestres",
+    "categoria": "Cadastros e Dados ",
     "tabela": "AA1CCDMU",
     "descricao": "Códigos de município"
   },
