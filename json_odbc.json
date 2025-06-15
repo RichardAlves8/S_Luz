@@ -1,82 +1,261 @@
-{
-    "S_luz.Git":[
-        {"create and update": "Repository", "desc": "Richard"}
-    ],
-    "Cadastros e Dados Mestres": [
-        {"tabela": "AA2CTIPO", "descricao": "Armazena dados genéricos de Fornecedor, Loja, Cliente, Representante, Depósito. Tip_Loj_Cli define o tipo: F-Fornecedor, L-Loja, C-Cliente, R-Representante, D-Depósito"},
-        {"tabela": "AA2CFORN", "descricao": "Dados específicos do Fornecedor (fora de linha)"},
-        {"tabela": "AA3CITEM", "descricao": "Dados específicos do Item"},
-        {"tabela": "AA3CCEAN", "descricao": "Tabela com códigos de barra EAN/DUN dos produtos"},
-        {"tabela": "CAD_CLIENTE", "descricao": "Dados do cliente (CRM)"},
-        {"tabela": "END_CLIENTE", "descricao": "Endereço do cliente (apenas end_tpo_end = 1)"},
-        {"tabela": "DEP_CLIENTE", "descricao": "Dependentes do cliente (CRM)"},
-        {"tabela": "CARTÃO_CLIENTE", "descricao": "Dados do cartão do cliente (CRM). CRT_STATUS=6 libera para análise"},
-        {"tabela": "CONTATO_CLIENTE", "descricao": "Contatos do cliente (cont_tipo=1 residencial, cont_tipo=2 comercial)"},
-        {"tabela": "AA1CCDMU", "descricao": "Códigos de município"}
-    ],
-    
-    "Pedidos e Compras": [
-        {"tabela": "AG1DPEDI", "descricao": "Cabeçalho de Pedido de Compra"},
-        {"tabela": "AG1LPEDI", "descricao": "Itens do Pedido de Compra"},
-        {"tabela": "AG1EPEDI", "descricao": "Histórico do pedido de compra"},
-        {"tabela": "AG1FDPED", "descricao": "Itens do pedido de compra fechado"},
-        {"tabela": "AG1FLPED", "descricao": "Cabeçalho de Pedido de Compra Fechado"},
-        {"tabela": "AA3CCPGT", "descricao": "Condição de pagamento para vendas assistidas (VABUCPGT)"},
-        {"tabela": "AALFRMPG", "descricao": "Forma de pagamento por filial (VABFRMPG)"}
-    ],
-    
-    "Fiscal e Financeiro": [
-        {"tabela": "AA2TFISC", "descricao": "Tabela de Figura Fiscal (tabela fiscal mercantil)"},
-        {"tabela": "AA1CFISC", "descricao": "Livros Fiscais (capa da NF)"},
-        {"tabela": "AG1FENSA", "descricao": "Itens de NF integrados nos Livros Fiscais (completo)"},
-        {"tabela": "AG1IENSA", "descricao": "Itens de NF integrados nos Livros Fiscais (reduzido)"},
-        {"tabela": "AA2CPISA", "descricao": "Valores apurados de PIS/COFINS"},
-        {"tabela": "AG1CCOBS", "descricao": "Observações das NFs"},
-        {"tabela": "AG1PAGCP", "descricao": "Títulos do contas a pagar"},
-        {"tabela": "AA1AGEAXT", "descricao": "Títulos agendados no contas a pagar para EDI"},
-        {"tabela": "AC1CLANC", "descricao": "Lançamentos do cartão do cliente"}
-    ],
-    
-    "Estoque e Inventário": [
-        {"tabela": "AA2CEXIS", "descricao": "Títulos importados da varredura do sacado (agendamento bancário)"},
-        {"tabela": "AALAGEXI", "descricao": "Títulos agendados"},
-        {"tabela": "AG2ICNTR", "descricao": "Capa dos inventários"},
-        {"tabela": "AG5ESTL", "descricao": "Dessossa (processo de desagregação de itens)"},
-        {"tabela": "AG1IESTQ", "descricao": "Produtos do inventário"},
-        {"tabela": "AG5CLOTE", "descricao": "Número do lote e quantidade digitada no inventário"}
-    ],
-    
-    "Vendas e Promoções": [
-        {"tabela": "AGG_VDA_PROD", "descricao": "Venda diária de produtos por loja"},
-        {"tabela": "AG1CAPAP", "descricao": "Capa dos Acordos Promocionais"},
-        {"tabela": "AG1DETIT", "descricao": "Itens do Acordo Promocional"},
-        {"tabela": "AALPROFT", "descricao": "Informações de produtos em oferta"},
-        {"tabela": "CAPCUPOM", "descricao": "Controle de notas fiscais conjugadas (mesmo número de cupom)"}
-    ],
-    
-    "Integração e Logs": [
-        {"tabela": "AA0LOGIT", "descricao": "Log de alterações de produtos"},
-        {"tabela": "AA1AUSUA", "descricao": "Log de alterações de tipos"},
-        {"tabela": "AA1AEXEC", "descricao": "Libera integração do Contas a Pagar/Receber"},
-        {"tabela": "user_tables", "descricao": "Lista todas as tabelas do banco"},
-        {"tabela": "user_jobs", "descricao": "Mostra jobs do Gerencial"}
-    ],
-    
-    "Tesouraria e Caixa": [
-        {"tabela": "AG2VECNT", "descricao": "Movimento de caixa (tesouraria)"},
-        {"tabela": "AG2VCTRL", "descricao": "Controle de tesouraria (VGTUINIC)"},
-        {"tabela": "AG2VCTEF", "descricao": "Saída automática de cartões (SITEF)"},
-        {"tabela": "AG2VPTEF", "descricao": "Saída automática de cartões (SITEF)"},
-        {"tabela": "AA2CSALD", "descricao": "Saldo de Caixas/Bancos"},
-        {"tabela": "AC1CCHEQ", "descricao": "Baixa de cheques (CRM)"}
-    ],
-    
-    "Outras Tabelas Relevantes": [
-        {"tabela": "AA2CTABE", "descricao": "Armazena tabelas auxiliares (bancos, agendas, CPMF, PIS/COFINS)"},
-        {"tabela": "AA2CLSEC", "descricao": "Relação Loja x Seção"},
-        {"tabela": "AA2CPREC", "descricao": "Tabela de preços e vigência de ofertas"},
-        {"tabela": "AA3CTBPC", "descricao": "Plano de contas contábeis"},
-        {"tabela": "AG2VR601", "descricao": "Registros fiscais do SINTEGRA (601)"},
-        {"tabela": "AA2AFRNT", "descricao": "Dias não úteis (VABCDIAS)"}
-    ]
-}
+[
+    {
+        "descricao":"updated, "
+
+    },
+  {
+    "categoria": "Cadastros e Dados Mestres",
+    "tabela": "AA2CTIPO",
+    "descricao": "Armazena dados genéricos de Fornecedor, Loja, Cliente, Representante, Depósito. Tip_Loj_Cli define o tipo: F-Fornecedor, L-Loja, C-Cliente, R-Representante, D-Depósito"
+  },
+  {
+    "categoria": "Cadastros e Dados Mestres",
+    "tabela": "AA2CFORN",
+    "descricao": "Dados específicos do Fornecedor (fora de linha)"
+  },
+  {
+    "categoria": "Cadastros e Dados Mestres",
+    "tabela": "AA3CITEM",
+    "descricao": "Dados específicos do Item"
+  },
+  {
+    "categoria": "Cadastros e Dados Mestres",
+    "tabela": "AA3CCEAN",
+    "descricao": "Tabela com códigos de barra EAN/DUN dos produtos"
+  },
+  {
+    "categoria": "Cadastros e Dados Mestres",
+    "tabela": "CAD_CLIENTE",
+    "descricao": "Dados do cliente (CRM)"
+  },
+  {
+    "categoria": "Cadastros e Dados Mestres",
+    "tabela": "END_CLIENTE",
+    "descricao": "Endereço do cliente (apenas end_tpo_end = 1)"
+  },
+  {
+    "categoria": "Cadastros e Dados Mestres",
+    "tabela": "AA1CCDMU",
+    "descricao": "Códigos de município"
+  },
+  {
+    "categoria": "Pedidos e Compras",
+    "tabela": "AG1DPEDI",
+    "descricao": "Cabeçalho de Pedido de Compra"
+  },
+  {
+    "categoria": "Pedidos e Compras",
+    "tabela": "AG1LPEDI",
+    "descricao": "Itens do Pedido de Compra"
+  },
+  {
+    "categoria": "Pedidos e Compras",
+    "tabela": "AG1EPEDI",
+    "descricao": "Histórico do pedido de compra"
+  },
+  {
+    "categoria": "Pedidos e Compras",
+    "tabela": "AG1FDPED",
+    "descricao": "Itens do pedido de compra fechado"
+  },
+  {
+    "categoria": "Pedidos e Compras",
+    "tabela": "AG1FLPED",
+    "descricao": "Cabeçalho de Pedido de Compra Fechado"
+  },
+  {
+    "categoria": "Pedidos e Compras",
+    "tabela": "AA3CCPGT",
+    "descricao": "Condição de pagamento para vendas assistidas (VABUCPGT)"
+  },
+  {
+    "categoria": "Pedidos e Compras",
+    "tabela": "AALFRMPG",
+    "descricao": "Forma de pagamento por filial (VABFRMPG)"
+  },
+  {
+    "categoria": "Fiscal e Financeiro",
+    "tabela": "AA2TFISC",
+    "descricao": "Tabela de Figura Fiscal (tabela fiscal mercantil)"
+  },
+  {
+    "categoria": "Fiscal e Financeiro",
+    "tabela": "AA1CFISC",
+    "descricao": "Livros Fiscais (capa da NF)"
+  },
+  {
+    "categoria": "Fiscal e Financeiro",
+    "tabela": "AG1FENSA",
+    "descricao": "Itens de NF integrados nos Livros Fiscais (completo)"
+  },
+  {
+    "categoria": "Fiscal e Financeiro",
+    "tabela": "AG1IENSA",
+    "descricao": "Itens de NF integrados nos Livros Fiscais (reduzido)"
+  },
+  {
+    "categoria": "Fiscal e Financeiro",
+    "tabela": "AA2CPISA",
+    "descricao": "Valores apurados de PIS/COFINS"
+  },
+  {
+    "categoria": "Fiscal e Financeiro",
+    "tabela": "AG1CCOBS",
+    "descricao": "Observações das NFs"
+  },
+  {
+    "categoria": "Fiscal e Financeiro",
+    "tabela": "AG1PAGCP",
+    "descricao": "Títulos do contas a pagar"
+  },
+  {
+    "categoria": "Fiscal e Financeiro",
+    "tabela": "AA1AGEAXT",
+    "descricao": "Títulos agendados no contas a pagar para EDI"
+  },
+  {
+    "categoria": "Fiscal e Financeiro",
+    "tabela": "AC1CLANC",
+    "descricao": "Lançamentos do cartão do cliente"
+  },
+  {
+    "categoria": "Estoque e Inventário",
+    "tabela": "AA2CEXIS",
+    "descricao": "Títulos importados da varredura do sacado (agendamento bancário)"
+  },
+  {
+    "categoria": "Estoque e Inventário",
+    "tabela": "AALAGEXI",
+    "descricao": "Títulos agendados"
+  },
+  {
+    "categoria": "Estoque e Inventário",
+    "tabela": "AG2ICNTR",
+    "descricao": "Capa dos inventários"
+  },
+  {
+    "categoria": "Estoque e Inventário",
+    "tabela": "AG5ESTL",
+    "descricao": "Dessossa (processo de desagregação de itens)"
+  },
+  {
+    "categoria": "Estoque e Inventário",
+    "tabela": "AG1IESTQ",
+    "descricao": "Produtos do inventário"
+  },
+  {
+    "categoria": "Estoque e Inventário",
+    "tabela": "AG5CLOTE",
+    "descricao": "Número do lote e quantidade digitada no inventário"
+  },
+  {
+    "categoria": "Vendas e Promoções",
+    "tabela": "AGG_VDA_PROD",
+    "descricao": "Venda diária de produtos por loja"
+  },
+  {
+    "categoria": "Vendas e Promoções",
+    "tabela": "AG1CAPAP",
+    "descricao": "Capa dos Acordos Promocionais"
+  },
+  {
+    "categoria": "Vendas e Promoções",
+    "tabela": "AG1DETIT",
+    "descricao": "Itens do Acordo Promocional"
+  },
+  {
+    "categoria": "Vendas e Promoções",
+    "tabela": "AALPROFT",
+    "descricao": "Informações de produtos em oferta"
+  },
+  {
+    "categoria": "Vendas e Promoções",
+    "tabela": "CAPCUPOM",
+    "descricao": "Controle de notas fiscais conjugadas (mesmo número de cupom)"
+  },
+  {
+    "categoria": "Integração e Logs",
+    "tabela": "AA0LOGIT",
+    "descricao": "Log de alterações de produtos"
+  },
+  {
+    "categoria": "Integração e Logs",
+    "tabela": "AA1AUSUA",
+    "descricao": "Log de alterações de tipos"
+  },
+  {
+    "categoria": "Integração e Logs",
+    "tabela": "AA1AEXEC",
+    "descricao": "Libera integração do Contas a Pagar/Receber"
+  },
+  {
+    "categoria": "Integração e Logs",
+    "tabela": "user_tables",
+    "descricao": "Lista todas as tabelas do banco"
+  },
+  {
+    "categoria": "Integração e Logs",
+    "tabela": "user_jobs",
+    "descricao": "Mostra jobs do Gerencial"
+  },
+  {
+    "categoria": "Tesouraria e Caixa",
+    "tabela": "AG2VECNT",
+    "descricao": "Movimento de caixa (tesouraria)"
+  },
+  {
+    "categoria": "Tesouraria e Caixa",
+    "tabela": "AG2VCTRL",
+    "descricao": "Controle de tesouraria (VGTUINIC)"
+  },
+  {
+    "categoria": "Tesouraria e Caixa",
+    "tabela": "AG2VCTEF",
+    "descricao": "Saída automática de cartões (SITEF)"
+  },
+  {
+    "categoria": "Tesouraria e Caixa",
+    "tabela": "AG2VPTEF",
+    "descricao": "Saída automática de cartões (SITEF)"
+  },
+  {
+    "categoria": "Tesouraria e Caixa",
+    "tabela": "AA2CSALD",
+    "descricao": "Saldo de Caixas/Bancos"
+  },
+  {
+    "categoria": "Tesouraria e Caixa",
+    "tabela": "AC1CCHEQ",
+    "descricao": "Baixa de cheques (CRM)"
+  },
+  {
+    "categoria": "Outras Tabelas Relevantes",
+    "tabela": "AA2CTABE",
+    "descricao": "Armazena tabelas auxiliares (bancos, agendas, CPMF, PIS/COFINS)"
+  },
+  {
+    "categoria": "Outras Tabelas Relevantes",
+    "tabela": "AA2CLSEC",
+    "descricao": "Relação Loja x Seção"
+  },
+  {
+    "categoria": "Outras Tabelas Relevantes",
+    "tabela": "AA2CPREC",
+    "descricao": "Tabela de preços e vigência de ofertas"
+  },
+  {
+    "categoria": "Outras Tabelas Relevantes",
+    "tabela": "AA3CTBPC",
+    "descricao": "Plano de contas contábeis"
+  },
+  {
+    "categoria": "Outras Tabelas Relevantes",
+    "tabela": "AG2VR601",
+    "descricao": "Registros fiscais do SINTEGRA (601)"
+  },
+  {
+    "categoria": "Outras Tabelas Relevantes",
+    "tabela": "AA2AFRNT",
+    "descricao": "Dias não úteis (VABCDIAS)"
+  }
+]
