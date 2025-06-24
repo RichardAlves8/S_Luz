@@ -16,23 +16,14 @@ Sumário = {
 
     > Baixei, traduzi e listei
         Depois, salvei em JSON (json_odbc.json)
+
+
+    (23/06/25)
+        - encontrei um pdf das tabelas rms -_-'
+        - instalei oracle XE local pra praticar
+        - baixei varios db com formatos de dados diferentes! (marquei com estrela aqui no git)
+        - coisas novas por vir!! (:
 }
-
-
-
-
-
--- < crdt - bypass > --
-
-def (str(função)):
-    finalidade = ["produzir ferramentas", "explorar", "aprender"]
-
-    if função not in finalidade:
-        # :/
-    else:
-        for propósito in range(len(finalidade)):
-            return(len(Sumário) + 1)
-
 
 
 
