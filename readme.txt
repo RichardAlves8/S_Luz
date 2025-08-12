@@ -102,6 +102,7 @@ PROMPT   text-align: center;;
 PROMPT   padding: 40px 0;;
 PROMPT   background-color: #1abc9c;;
 PROMPT   color: #ffffff;;
+PROMPT   position: relative;; /* Adicionado para posicionar o logo em relação a este contêiner */
 PROMPT }
 PROMPT
 PROMPT .header h1 {
@@ -116,6 +117,15 @@ PROMPT   font-weight: 200;;
 PROMPT   margin-top: 10px;;
 PROMPT   opacity: 0.9;;
 PROMPT }
+PROMPT
+PROMPT .logo {
+PROMPT   position: absolute;; /* Permite o posicionamento */
+PROMPT   top: 10px;; /* Distância do topo */
+PROMPT   left: 10px;; /* Distância da esquerda */
+PROMPT   width: 100px;; /* Tamanho do logo */
+PROMPT   height: auto;;
+PROMPT }
+PROMPT
 PROMPT /* Estilo para o botão */
 PROMPT button {
 PROMPT     background-color: #1abc9c;; /* Cor do cabeçalho */
@@ -216,7 +226,10 @@ PROMPT     text-decoration: none;;
 PROMPT }
 PROMPT </style>
 PROMPT <meta charset="UTF-8">
+PROMPT <title>Consulta</title>
+PROMPT <link rel="icon" href="https://santaluzia.vteximg.com.br/arquivos/santa-luzia-favicon.ico" type="image/x-icon">
 PROMPT <div class='header'>
+PROMPT <img class="logo" src="https://s3-sa-east-1.amazonaws.com/whitelabel-ecommerces/ecommerce/images/54/large/logo.png" alt="Logo do site">
 PROMPT <h1>Relatório de Dados</h1>
 PROMPT <p>Gerado em:
 SELECT TO_CHAR(SYSDATE, 'dd, month/yyyy') FROM DUAL;
@@ -230,10 +243,13 @@ SET MARKUP HTML ON
 _______ [wspl] _______
 
 
+
 SET MARKUP HTML OFF
 SET HEADING ON
 SET FEEDBACK ON
 
+PROMPT </table>
+PROMPT
 -- Botão e janela modal
 PROMPT <div style="text-align: center; margin-top: 20px;">
 PROMPT   <button onclick="abrirModal()">Resumo</button>
@@ -250,8 +266,13 @@ PROMPT     </div>
 PROMPT   </div>
 PROMPT </div>
 PROMPT
+-- Código do rodapé (já com o nome em itálico)
+PROMPT <div class="footer">
+PROMPT <p>Consulta realizada por: <i>Richard Alves</i></p>
+PROMPT </div>
+PROMPT </body>
+PROMPT </html>
 -- JavaScript para controlar a janela modal
-
 PROMPT <script>
 PROMPT   var modal = document.getElementById("modalResumo");;
 PROMPT
@@ -269,19 +290,17 @@ PROMPT       fecharModal();;
 PROMPT     };
 PROMPT   };
 PROMPT </script>
-PROMPT </body>
-PROMPT </html>
--- Fechando as tags HTML que abrimos no início do script
-PROMPT </table>
-PROMPT </body>
-PROMPT </html>
+PROMPT
+-- Tags de fechamento duplicadas no seu código original
+-- Não são necessárias. Remova-as.
+-- PROMPT </table>
+-- PROMPT </body>
+-- PROMPT </html>
 SPOOL OFF
-
-
 -- Restaurando o ambiente
 SET TERMOUT ON
 SET SQLPROMPT 'SQL > '
-PROMPT [SPL.SQL] > SPOOL CREATE SUCESS! [SPOOL\Compile.html]
+PROMPT [SPL.SQL] > SPOOL CREATE SUCCESS! [SPOOL\Compile.html]
 PROMPT [SPL.SQL] > Para alterar os cabecalhos verifique @head.sql
 
 
