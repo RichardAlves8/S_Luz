@@ -33,301 +33,262 @@ Atualmente estou estudando java e JDBC, aprendi muito sobre dados e quando acho 
 Simplismnte facinado pelo InteliJ e aprendendo mais sobre power shell.
 Vou deixar um sqlp pra buscar depois ^^ (daqui um tempo apago)
 
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Consulta de Dados</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ecf0f1;
+      color: #34495e;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
+    /* Cabeçalho flat */
+    header {
+      background-color: #1abc9c;
+      color: white;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
 
-________ [CONFIG POWER SHELL] ______________
-system.environment]::setenv ("","","user")
-new-file -path "" itemtype directory
+    /* Subtítulo */
+    #subtitle {
+      text-align: center;
+      font-style: italic;
+      margin-top: 10px;
+      margin-bottom: 50px;
+      color: #2c3e50;
+    }
 
+    /* Modal do upload */
+    #uploadDiv {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
 
-________ [DQL CONFIGURAÇÃO PRO TERMINAL] _______
+    #uploadDiv div {
+      background-color: white;
+      padding: 30px 50px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      text-align: center;
+    }
 
-SET LINESIZE        200
-SET PAGESIZE        1000
-SET LONG            1000
-SET LONGCHUNKSIZE   1000
-SET TRIMOUT         ON
-SET TRIMSPOOL       ON
-SET WRAP            ON
-SET TAB             OFF
-SET NULL            "-"
-SET COLSEP          " | "
-SET HEADSEP         "="
+    .file-upload-label {
+      display: inline-block;
+      background-color: #1abc9c;
+      color: white;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
 
-SET AUTOCOMMIT      OFF
-SET AUTOPRINT       OFF
-SET AUTORECOVERY    OFF
-SET AUTOTRACE       OFF
-SET SERVEROUTPUT    ON
-SET FEEDBACK        OFF
-SET VERIFY          OFF
-SET ECHO            OFF
+    .file-upload-label:hover {
+      background-color: #16a085;
+    }
 
-SET SQLPROMPT       "SQL> "
-SET EDITFILE        "afiedt.buf"
-SET DEFINE          "&"
-SET TERMOUT         ON
-SET TIMING          OFF
-SET TIME            OFF
-SET EXITCOMMIT      ON
+    .file-upload input[type="file"] {
+      display: none !important;
+    }
 
+    table {
+      width: calc(100% - 60px);
+      margin: 0 auto 20px auto;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
 
+    th, td {
+      padding: 10px 15px;
+      text-align: left;
+      border-bottom: 1px solid #95a5a6;
+    }
 
-_____ [SPL] ______
+    th {
+      background-color: #1abc9c;
+      color: white;
+      position: relative;
+    }
 
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
 
-SET PAGESIZE 0
-SET LINESIZE 200
-SET FEEDBACK OFF
-SET VERIFY OFF
-SET HEADING OFF
-SET TERMOUT OFF
-SET DEFINE OFF
-SPOOL ON
-SET SQLPROMPT '[SPL]  > '
-SPOOL "SPOOL\Compile.html"
+    tr:hover {
+      background-color: #e0e0e0;
+      color: #34495e;
+      transition: 0.3s;
+    }
 
-PROMPT <style>
-PROMPT body {
-PROMPT   font-family: 'Segoe UI', Arial, sans-serif;;
-PROMPT   font-size: 16px;;
-PROMPT   background-color: #ecf0f1;;
-PROMPT   color: #34495e;;
-PROMPT   margin: 0;;
-PROMPT   padding: 0;;
-PROMPT }
-PROMPT
-PROMPT .header {
-PROMPT   text-align: center;;
-PROMPT   padding: 40px 0;;
-PROMPT   background-color: #1abc9c;;
-PROMPT   color: #ffffff;;
-PROMPT   position: relative;; /* Adicionado para posicionar o logo em relação a este contêiner */
-PROMPT }
-PROMPT
-PROMPT .header h1 {
-PROMPT   font-size: 2.5em;;
-PROMPT   font-weight: 200;;
-PROMPT   margin: 0;;
-PROMPT }
-PROMPT
-PROMPT .header p {
-PROMPT   font-size: 1em;;
-PROMPT   font-weight: 200;;
-PROMPT   margin-top: 10px;;
-PROMPT   opacity: 0.9;;
-PROMPT }
-PROMPT
-PROMPT .logo {
-PROMPT   position: absolute;; /* Permite o posicionamento */
-PROMPT   top: 10px;; /* Distância do topo */
-PROMPT   left: 10px;; /* Distância da esquerda */
-PROMPT   width: 100px;; /* Tamanho do logo */
-PROMPT   height: auto;;
-PROMPT }
-PROMPT
-PROMPT /* Estilo para o botão */
-PROMPT button {
-PROMPT     background-color: #1abc9c;; /* Cor do cabeçalho */
-PROMPT     color: #ffffff;;
-PROMPT     border: none;;
-PROMPT     padding: 12px 24px;;
-PROMPT     font-size: 16px;;
-PROMPT     cursor: pointer;;
-PROMPT     border-radius: 4px;; /* Bordas levemente arredondadas */
-PROMPT     transition: background-color 0.3s ease;; /* Transição suave */
-PROMPT }
-PROMPT
-PROMPT button:hover {
-PROMPT     background-color: #16a085;; /* Cor um pouco mais escura ao passar o mouse */
-PROMPT }
-PROMPT
-PROMPT table {
-PROMPT   border-collapse: collapse;;
-PROMPT   width: 90%;;
-PROMPT   margin: 40px auto;;
-PROMPT   background-color: #ffffff;;
-PROMPT }
-PROMPT
-PROMPT th, td {
-PROMPT   padding: 12px;;
-PROMPT   text-align: left;;
-PROMPT   border-bottom: 1px solid #ecf0f1;;
-PROMPT }
-PROMPT
-PROMPT thead th {
-PROMPT   background-color: #48c9b0;;
-PROMPT   color: #ffffff;;
-PROMPT   font-weight: 300;;
-PROMPT   text-transform: uppercase;;
-PROMPT }
-PROMPT
-PROMPT tbody tr:last-child td {
-PROMPT   border-bottom: none;;
-PROMPT }
-PROMPT
-PROMPT tbody tr:nth-child(even) {
-PROMPT   background-color: #f8f9fa;;
-PROMPT }
-PROMPT
-PROMPT tbody tr:hover {
-PROMPT   background-color: #e8f8f5;;
-PROMPT   cursor: pointer;;
-PROMPT }
-PROMPT tbody tr:active {
-PROMPT   background-color: #e8f8f5;; /* Evita a cor azul padrão do navegador ao clicar */
-PROMPT }
-PROMPT tbody tr:hover td {
-PROMPT   color: #34495e;; /* Mantém a cor do texto */
-PROMPT }
-PROMPT tbody tr:active td {
-PROMPT   color: #34495e;; /* Mantém a cor do texto */
-PROMPT }
-PROMPT /* Estilos da janela modal (customizada) */
-PROMPT .modal {
-PROMPT     display: none;; /* Inicia oculta */
-PROMPT     position: fixed;; /* Isso é crucial para que ela flutue sobre o conteúdo */
-PROMPT     z-index: 1000;; /* Garante que ela esteja acima de todos os outros elementos */
-PROMPT     left: 0;;
-PROMPT     top: 0;;
-PROMPT     width: 100%;;
-PROMPT     height: 100%;;
-PROMPT     background-color: rgba(0,0,0,0.4);; /* Fundo semi-transparente */
-PROMPT     justify-content: center;; /* Mantemos o justify-content... */
-PROMPT     align-items: center;; /* ...e o align-items, mas sem o display: flex inicial */
-PROMPT }
-PROMPT
-PROMPT .modal-content {
-PROMPT     background-color: #fefefe;;
-PROMPT     padding: 20px;;
-PROMPT     border: 1px solid #888;;
-PROMPT     width: 80%;; /* Largura da janela */
-PROMPT     max-width: 400px;;
-PROMPT     text-align: center;;
-PROMPT     border-radius: 8px;;
-PROMPT     box-shadow: 0 4px 8px rgba(0,0,0,0.2);;
-PROMPT     position: relative;;
-PROMPT }
-PROMPT
-PROMPT .close-btn {
-PROMPT     color: #aaa;;
-PROMPT     font-size: 28px;;
-PROMPT     font-weight: bold;;
-PROMPT     position: absolute;;
-PROMPT     top: 5px;;
-PROMPT     right: 15px;;
-PROMPT     cursor: pointer;;
-PROMPT }
-PROMPT
-PROMPT .close-btn:hover,
-PROMPT .close-btn:focus {
-PROMPT     color: #000;;
-PROMPT     text-decoration: none;;
-PROMPT }
-PROMPT </style>
-PROMPT <meta charset="UTF-8">
-PROMPT <title>Consulta</title>
-PROMPT <link rel="icon" href="https://santaluzia.vteximg.com.br/arquivos/santa-luzia-favicon.ico" type="image/x-icon">
-PROMPT <div class='header'>
-PROMPT <img class="logo" src="https://s3-sa-east-1.amazonaws.com/whitelabel-ecommerces/ecommerce/images/54/large/logo.png" alt="Logo do site">
-PROMPT <h1>Relatório de Dados</h1>
-PROMPT <p>Gerado em:
-SELECT TO_CHAR(SYSDATE, 'dd, month/yyyy') FROM DUAL;
-PROMPT </p>
-PROMPT </div>
+    .sort-btn {
+      background-color: #16a085;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 5px;
+      transition: 0.3s;
+      font-size: 12px;
+    }
 
+    .sort-btn:hover {
+      background-color: #138f75;
+    }
 
-SET MARKUP HTML ON
+    footer {
+      text-align: center;
+      font-size: 12px;
+      font-style: italic;
+      color: #7f8c8d;
+      margin-top: auto;
+      padding: 10px 0;
+      background-color: #ecf0f1;
+    }
+  </style>
+</head>
+<body>
+<header>Consulta de Dados</header>
+<div id="subtitle"></div>
 
+<!-- Modal de upload -->
+<div class="file-upload" id="uploadDiv">
+  <div>
+    <label class="file-upload-label" for="csvFile">Selecionar arquivo CSV</label>
+    <input type="file" id="csvFile" accept=".csv">
+  </div>
+</div>
 
-_______ [wspl] _______
+<table id="tabela">
+  <thead></thead>
+  <tbody></tbody>
+</table>
 
+<footer>Consulta realizada por: Richard</footer>
 
+<script>
+  // Subtítulo com data e hora atual
+  const subtitleDiv = document.getElementById('subtitle');
+  const now = new Date();
+  subtitleDiv.textContent = now.toLocaleString();
 
-SET MARKUP HTML OFF
-SET HEADING ON
-SET FEEDBACK ON
+  let sortPriority = [];
 
-PROMPT </table>
-PROMPT
--- Botão e janela modal
-PROMPT <div style="text-align: center; margin-top: 20px;">
-PROMPT   <button onclick="abrirModal()">Resumo</button>
-PROMPT </div>
-PROMPT <div id="modalResumo" class="modal">
-PROMPT   <div class="modal-content">
-PROMPT     <span class="close-btn" onclick="fecharModal()">&times;</span>
-PROMPT     <h2>Conclusão</h2>
-PROMPT     <div id="conteudo-resumo">
-PROMPT       <p>
-PROMPT       (Conteúdo não adicionado)
-PROMPT       </p>
-PROMPT     </div>
-PROMPT   </div>
-PROMPT </div>
-PROMPT
--- Código do rodapé (já com o nome em itálico)
-PROMPT <div class="footer">
-PROMPT <p>Consulta realizada por: <i>Richard Alves</i></p>
-PROMPT </div>
-PROMPT </body>
-PROMPT </html>
--- JavaScript para controlar a janela modal
-PROMPT <script>
-PROMPT   var modal = document.getElementById("modalResumo");;
-PROMPT
-PROMPT   function abrirModal() {;
-PROMPT     modal.style.display = "flex";;
-PROMPT   };
-PROMPT
-PROMPT   function fecharModal() {;
-PROMPT     modal.style.display = "none";;
-PROMPT   };
-PROMPT
-PROMPT   window.onclick = function(event) {;
-PROMPT     if (event.target == modal) {;
-PROMPT       fecharModal();;
-PROMPT     };
-PROMPT   };
-PROMPT </script>
-PROMPT
--- Tags de fechamento duplicadas no seu código original
--- Não são necessárias. Remova-as.
--- PROMPT </table>
--- PROMPT </body>
--- PROMPT </html>
-SPOOL OFF
--- Restaurando o ambiente
-SET TERMOUT ON
-SET SQLPROMPT 'SQL > '
-PROMPT [SPL.SQL] > SPOOL CREATE SUCCESS! [SPOOL\Compile.html]
-PROMPT [SPL.SQL] > Para alterar os cabecalhos verifique @head.sql
+  function processCSV(text) {
+    const lines = text.trim().split('\n');
+    if (lines.length === 0) return;
 
+    // Esconde modal após carregar CSV
+    document.getElementById('uploadDiv').style.display = 'none';
 
+    const headers = lines[0].split(',').map(h => h.trim());
+    const tbody = document.querySelector('#tabela tbody');
+    const thead = document.querySelector('#tabela thead');
 
-_______ [head] _________
+    thead.innerHTML = '';
+    const trHead = document.createElement('tr');
+    headers.forEach((h, index) => {
+      const th = document.createElement('th');
+      th.textContent = h;
 
-SET TERMOUT ON
-PROMPT [Richard] : Ola, esse arquivo serve para lhe instruir a criar cabecalhos na tabela deste script
-PROMPT [Richard] : Para alterar o cabecalho crie essa parte no html e modifique a seu criterio
-PROMPT ______________________________________________________________________________
-PROMPT
-PROMPT <table border='1' width='90%' align='center' summary='Script output'>
-PROMPT
-PROMPT  <thead>
-PROMPT     <tr>
-PROMPT         <th>OPCIONAL6</th>
-PROMPT         <th>OPCIONAL5</th>
-PROMPT         <th>OPCIONAL4</th>
-PROMPT         <th>OPCIONAL3</th>
-PROMPT         <th>OPCIONAL2</th>
-PROMPT         <th>OPCIONAL1</th>
-PROMPT     </tr>
-PROMPT     </thead>
-PROMPT
-PROMPT ______________________________________________________________________________
-PROMPT
-PROMPT [Richard] : Dentro do navegador Use CTR + U
-PROMPT [Richard] : Ou edite o arquivo com editor de texto.
+      const btn = document.createElement('button');
+      btn.textContent = '↑↓';
+      btn.className = 'sort-btn';
+      btn.addEventListener('click', () => sortColumnDynamic(index));
+      th.appendChild(btn);
+
+      trHead.appendChild(th);
+    });
+    thead.appendChild(trHead);
+
+    tbody.innerHTML = '';
+    lines.slice(1).forEach(line => {
+      if (!line.trim()) return;
+      const cols = line.split(',').map(c => c.trim());
+      const tr = document.createElement('tr');
+      cols.forEach(col => {
+        const td = document.createElement('td');
+        td.textContent = col;
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  }
+
+  function sortColumnDynamic(colIndex) {
+    const table = document.getElementById('tabela');
+    const tbody = table.tBodies[0];
+    const rows = Array.from(tbody.rows);
+
+    const existing = sortPriority.find(s => s.col === colIndex);
+    if (existing) {
+      existing.asc = !existing.asc;
+      sortPriority = [existing, ...sortPriority.filter(s => s.col !== colIndex)];
+    } else {
+      sortPriority = [{col: colIndex, asc: true}, ...sortPriority];
+    }
+
+    rows.sort((a, b) => {
+      for (let s of sortPriority) {
+        let valA = a.cells[s.col].textContent.trim();
+        let valB = b.cells[s.col].textContent.trim();
+
+        if (!isNaN(parseFloat(valA)) && !isNaN(parseFloat(valB))) {
+          valA = parseFloat(valA);
+          valB = parseFloat(valB);
+          if (valA !== valB) return s.asc ? valA - valB : valB - valA;
+        } else {
+          const cmp = valA.localeCompare(valB);
+          if (cmp !== 0) return s.asc ? cmp : -cmp;
+        }
+      }
+      return 0;
+    });
+
+    rows.forEach(r => tbody.appendChild(r));
+  }
+
+  fetch('query.csv')
+          .then(response => {
+            if (!response.ok) throw new Error('Arquivo não encontrado');
+            return response.text();
+          })
+          .then(text => processCSV(text))
+          .catch(err => console.log('Não foi possível carregar query.csv, use o botão.'));
+
+  document.getElementById('csvFile').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      processCSV(event.target.result);
+    };
+    reader.readAsText(file);
+  });
+</script>
+</body>
+</html>
+
 
 
